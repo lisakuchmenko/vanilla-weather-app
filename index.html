@@ -15,23 +15,32 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="app-wrapper">
-				<h1>New York</h1>
-				<ul>
-					<li>Friday 05:00</li>
-					<li>Clear</li>
-				</ul>
-				<div class="row">
-					<div class="col-6">
-						<img src="images/sun.png" alt="sunny" width="50" />
-						12ºC | ºF
-					</div>
-					<div class="col-6">
+			<div class="weather-app-wrapper">
+				<div class="weather-app">
+					<div class="overview">
+						<h1>New York</h1>
 						<ul>
-							<li>Precipitation 0%</li>
-							<li>Humidity 73%</li>
-							<li>Wind: 2 km/h</li>
+							<li>Friday 05:00</li>
+							<li>Clear</li>
 						</ul>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<div class="clearfix weather-temperature">
+								<img src="images/sun.png" alt="sunny" class="float-start" />
+								<div class="float-start">
+									<span class="degrees">12</span>
+									<span class="units">ºC | <a href="#">ºF</a></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-6">
+							<ul>
+								<li>Precipitation 0%</li>
+								<li>Humidity 73%</li>
+								<li>Wind: 2 km/h</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 				<footer>Open-source code, by Lisa Kuchmenko</footer>
