@@ -17,7 +17,7 @@ body {
 	margin-bottom: 20px;
 }
 
-h1 {
+#city {
 	margin-bottom: 0;
 	color: #878787;
 	font-size: 24px;
@@ -36,6 +36,7 @@ li {
 	color: rgb(135, 135, 135);
 	font-size: 16px;
 	font-weight: 100;
+	text-transform: capitalize;
 }
 
 .weather-temperature img {
@@ -43,7 +44,7 @@ li {
 	margin-right: 5px;
 }
 
-.weather-temperature .degrees {
+#temperature {
 	color: #da7242;
 	line-height: 1;
 	font-size: 64px;
