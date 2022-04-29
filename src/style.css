@@ -46,6 +46,16 @@ li::first-letter {
 	width: 64px;
 }
 
+.weather-temperature a {
+	color: rgb(135, 135, 135);
+	text-decoration: none;
+}
+
+.weather-temperature .active {
+	color: #da7242;
+	cursor: default;
+}
+
 #temperature {
 	color: #da7242;
 	line-height: 1;

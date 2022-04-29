@@ -6,6 +6,9 @@ let cityEl = document.querySelector('#city');
 let humidityEl = document.querySelector('#humidity');
 let windEl = document.querySelector('#wind');
 let iconEl = document.querySelector('#icon');
+let farenhEl = document.querySelector('#farenheit');
+let celcEL = document.querySelector('#celcius');
+let celcTemp = null;
 
 function formatDate(timestamp) {
 	let week = [
@@ -39,6 +42,7 @@ function displayTemperature(response) {
 	dateEl.innerHTML = formatDate(response.data.dt * 1000);
 	iconEl.src = `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
 	iconEl.alt = response.data.weather[0].description;
+	celcTemp = Math.round(response.data.main.temp);
 }
 
 function search(city) {
@@ -53,7 +57,23 @@ function handleSubmit(event) {
 	search(cityInputEl);
 }
 
-search('London');
-
 let form = document.querySelector('#search-form');
 form.addEventListener('submit', handleSubmit);
+
+//change temperature to farenheit
+farenhEl.addEventListener('click', function (event) {
+	event.preventDefault();
+	tempEl.innerHTML = Math.round(celcTemp * 1.8 + 32);
+	farenhEl.classList.add('active');
+	celcEL.classList.remove('active');
+});
+
+//change temperature to celcius
+celcEL.addEventListener('click', function (event) {
+	event.preventDefault();
+	tempEl.innerHTML = celcTemp;
+	celcEL.classList.add('active');
+	farenhEl.classList.remove('active');
+});
+
+search('London');
