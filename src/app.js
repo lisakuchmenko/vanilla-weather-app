@@ -1,7 +1,4 @@
-let apiKey = 'b28509bf2e3b7243f21402b7bfc8dac4';
-let city = 'London';
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
+//variables for page elements
 let dateEl = document.querySelector('#date');
 let descriptionEl = document.querySelector('#description');
 let tempEl = document.querySelector('#temperature');
@@ -44,4 +41,19 @@ function displayTemperature(response) {
 	iconEl.alt = response.data.weather[0].description;
 }
 
-axios.get(apiUrl).then(displayTemperature);
+function search(city) {
+	let apiKey = 'b28509bf2e3b7243f21402b7bfc8dac4';
+	let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+	axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+	event.preventDefault();
+	let cityInputEl = document.querySelector('#city-input').value;
+	search(cityInputEl);
+}
+
+search('London');
+
+let form = document.querySelector('#search-form');
+form.addEventListener('submit', handleSubmit);
