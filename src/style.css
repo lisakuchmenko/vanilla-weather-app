@@ -44,7 +44,6 @@ li::first-letter {
 
 .weather-temperature img {
 	width: 64px;
-	margin-right: 5px;
 }
 
 #temperature {
