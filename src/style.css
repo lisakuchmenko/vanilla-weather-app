@@ -81,6 +81,24 @@ li::first-letter {
 	left: 0;
 }
 
+.weather-forecast {
+	margin-top: 20px;
+	text-align: center;
+	color: #4b93ec;
+}
+
+.weather-forecast-day {
+	font-size: 16px;
+}
+
+.weather-forecast-temp-min {
+	opacity: 0.7;
+}
+
+.weather-forecast-temp {
+	font-size: 13px;
+}
+
 footer {
 	padding-top: 10px;
 	text-align: center;
@@ -90,5 +108,6 @@ footer {
 
 footer a {
 	text-decoration: none;
-	color: #98bee7;
+	color: #4b93ec;
+	opacity: 0.6;
 }
