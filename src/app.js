@@ -48,12 +48,12 @@ function displayForecast(response) {
 	forecastHTML = `<div class="row justify-content-between">`;
 	forecast.forEach(function (day, index) {
 		if (index < 6) {
-			forecastHTML += `<div class="col-2 weather-tab">
+			forecastHTML += `<div class="col weather-tab">
 		<div class="weather-forecast-day">${formatDay(day.dt)}</div>
 		<img
 			src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png"
 			alt=""
-			width="36"
+			width="50"
 		/>
 		<div class="weather-forecast-temp">
 			<span class="weather-forecast-temp-max">${Math.round(day.temp.max)}º |</span

@@ -8,7 +8,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap"
 			rel="stylesheet"
 		/>
 		<link
@@ -63,8 +63,10 @@
 					<div class="overview">
 						<h1 id="city"></h1>
 						<ul>
-							<li>Last updated at: <span id="date"></span></li>
 							<li id="description"></li>
+							<li class="date-update">
+								Last updated at: <span id="date"></span>
+							</li>
 						</ul>
 					</div>
 					<div class="row">
@@ -81,10 +83,19 @@
 							</div>
 						</div>
 						<div class="col-6">
-							<ul>
-								<li>Feels like: <span id="feels-like"></span>º</li>
-								<li>Humidity: <span id="humidity"></span>%</li>
-								<li>Wind: <span id="wind"></span> km/h</li>
+							<ul class="weather-data">
+								<li>
+									Feels like:
+									<span id="feels-like"></span>ºC
+								</li>
+								<li>
+									Humidity:
+									<span id="humidity"></span>%
+								</li>
+								<li>
+									Wind:
+									<span id="wind"></span> km/h
+								</li>
 							</ul>
 						</div>
 					</div>

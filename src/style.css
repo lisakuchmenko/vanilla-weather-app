@@ -1,5 +1,6 @@
 body {
 	font-family: 'Poppins', sans-serif;
+	background-color: #faebe6;
 }
 
 .weather-app-wrapper {
@@ -8,13 +9,14 @@ body {
 }
 
 .weather-app {
-	padding: 20px;
+	padding: 25px;
 	border: 1px solid #db4c40;
 	border-radius: 10px;
+	background-color: #dbe9f9;
 }
 
 #city-input {
-	box-shadow: 5px 2px 8px rgba(0, 0, 0, 0.3);
+	box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
 
 #city-input::placeholder {
@@ -24,6 +26,12 @@ body {
 .btn {
 	background-color: #ec6e4b;
 	border: 1px solid #ec6e4b;
+	box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+.btn:hover,
+.btn:focus {
+	background-color: #4b93ec;
 }
 
 .overview {
@@ -31,11 +39,22 @@ body {
 }
 
 #city {
-	margin-bottom: 0;
+	margin-bottom: 5px;
 	color: #ec6e4b;
 	font-size: 30px;
 	font-weight: 600;
 	line-height: 28px;
+	text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1),
+		1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+#description {
+	color: #ec6e4b;
+	font-weight: 600;
+}
+
+.date-update {
+	font-weight: 300;
 }
 
 ul {
@@ -44,10 +63,10 @@ ul {
 }
 
 li {
+	color: #9c9898;
+	font-size: 16px;
 	list-style: none;
 	line-height: 19px;
-	color: rgb(156, 152, 152);
-	font-size: 16px;
 }
 
 li::first-letter {
@@ -59,7 +78,7 @@ li::first-letter {
 }
 
 .weather-temperature a {
-	color: rgb(156, 152, 152);
+	color: #9c9898;
 	text-decoration: none;
 }
 
@@ -69,10 +88,12 @@ li::first-letter {
 }
 
 #temperature {
-	color: #ec6e4b;
-	line-height: 1;
+	color: #ed6d4a;
 	font-size: 60px;
 	font-weight: 400;
+	line-height: 1;
+	text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1),
+		1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .weather-temperature .units {
@@ -81,15 +102,32 @@ li::first-letter {
 	left: 0;
 }
 
+.weather-data {
+	font-weight: 300;
+}
+
 .weather-forecast {
-	margin-top: 20px;
+	margin-top: 30px;
 	text-align: center;
-	color: #3d79c3;
+	color: #4b93ec;
 }
 
 .weather-tab {
-	border: 1px solid #3d79c3;
+	margin: 0 5px;
+	padding: 5px 0;
+	background-color: #f2dbd4;
+	font-weight: 300;
 	border-radius: 10px;
+	box-shadow: rgba(50, 50, 93, 1) 0px 10px 10px -25px,
+		rgba(0, 0, 0, 0.3) 0px 50px 60px -30px,
+		rgba(10, 37, 64, 0.35) 0px -2px 5px 0px inset;
+}
+
+.weather-tab:hover {
+	transform: scale(1.1);
+	box-shadow: rgba(236, 110, 75, 0.25) 0px 10px 10px -25px,
+		rgba(236, 110, 75, 0.3) 0px 50px 60px -30px,
+		rgba(236, 110, 75, 0.5) 0px -2px 5px 0px inset;
 }
 
 .weather-forecast-day {
@@ -97,7 +135,7 @@ li::first-letter {
 }
 
 .weather-forecast-temp-min {
-	opacity: 0.7;
+	opacity: 0.8;
 }
 
 .weather-forecast-temp {
@@ -107,12 +145,16 @@ li::first-letter {
 footer {
 	padding-top: 10px;
 	text-align: center;
-	color: rgb(177, 177, 177);
+	color: #989898;
+	font-weight: 300;
 	font-size: 14px;
 }
 
 footer a {
 	text-decoration: none;
-	color: #3d79c3;
-	opacity: 0.5;
+	color: rgba(75, 147, 236, 0.7);
+}
+
+footer a:hover {
+	color: #599ef3;
 }
