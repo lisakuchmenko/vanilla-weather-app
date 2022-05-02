@@ -3,6 +3,7 @@ let dateEl = document.querySelector('#date');
 let descriptionEl = document.querySelector('#description');
 let tempEl = document.querySelector('#temperature');
 let cityEl = document.querySelector('#city');
+let feelsLikeEl = document.querySelector('#feels-like');
 let humidityEl = document.querySelector('#humidity');
 let windEl = document.querySelector('#wind');
 let iconEl = document.querySelector('#icon');
@@ -41,14 +42,13 @@ function formatDay(timestamp) {
 
 function displayForecast(response) {
 	let forecast = response.data.daily;
-	console.log(forecast);
 	let forecastEl = document.querySelector('#forecast');
 	let forecastHTML = '';
 
-	forecastHTML = `<div class="row">`;
+	forecastHTML = `<div class="row justify-content-between">`;
 	forecast.forEach(function (day, index) {
 		if (index < 6) {
-			forecastHTML += `<div class="col-2">
+			forecastHTML += `<div class="col-2 weather-tab">
 		<div class="weather-forecast-day">${formatDay(day.dt)}</div>
 		<img
 			src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png"
@@ -73,9 +73,11 @@ function getForecast(coordinates) {
 }
 
 function displayTemperature(response) {
+	console.log(response.data);
 	descriptionEl.innerHTML = response.data.weather[0].description;
 	tempEl.innerHTML = Math.round(response.data.main.temp);
 	cityEl.innerHTML = response.data.name;
+	feelsLikeEl.innerHTML = Math.round(response.data.main.feels_like);
 	humidityEl.innerHTML = response.data.main.humidity;
 	windEl.innerHTML = Math.round(response.data.wind.speed);
 	dateEl.innerHTML = formatDate(response.data.dt * 1000);
@@ -92,6 +94,18 @@ function search(city) {
 	axios.get(apiUrl).then(displayTemperature);
 }
 
+function searchLocation() {
+	navigator.geolocation.getCurrentPosition(function (position) {
+		let lat = position.coords.latitude;
+		let lon = position.coords.longitude;
+		let apiKey = 'b28509bf2e3b7243f21402b7bfc8dac4';
+		let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+		axios.get(apiUrl).then(displayTemperature);
+	});
+}
+
+//form submit
 function handleSubmit(event) {
 	event.preventDefault();
 	let cityInputEl = document.querySelector('#city-input').value;
@@ -100,6 +114,10 @@ function handleSubmit(event) {
 
 let form = document.querySelector('#search-form');
 form.addEventListener('submit', handleSubmit);
+
+//geolocation submit
+let geolocation = document.querySelector('#geolocation');
+geolocation.addEventListener('click', searchLocation);
 
 //change temperature to farenheit
 farenhEl.addEventListener('click', function (event) {
