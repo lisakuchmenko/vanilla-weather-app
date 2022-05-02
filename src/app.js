@@ -9,7 +9,6 @@ let windEl = document.querySelector('#wind');
 let iconEl = document.querySelector('#icon');
 let farenhEl = document.querySelector('#farenheit');
 let celcEL = document.querySelector('#celcius');
-let celcTemp = null;
 
 function formatDate(timestamp) {
 	let week = [
@@ -53,7 +52,7 @@ function displayForecast(response) {
 		<img
 			src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png"
 			alt=""
-			width="50"
+			width="40"
 		/>
 		<div class="weather-forecast-temp">
 			<span class="weather-forecast-temp-max">${Math.round(day.temp.max)}º |</span
@@ -67,13 +66,13 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
+	let units = celcEL.classList.contains('active') ? 'metric' : 'imperial';
 	let apiKey = 'b28509bf2e3b7243f21402b7bfc8dac4';
-	let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&&appid=${apiKey}&units=metric`;
+	let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&&appid=${apiKey}&units=${units}`;
 	axios.get(apiUrl).then(displayForecast);
 }
 
 function displayTemperature(response) {
-	console.log(response.data);
 	descriptionEl.innerHTML = response.data.weather[0].description;
 	tempEl.innerHTML = Math.round(response.data.main.temp);
 	cityEl.innerHTML = response.data.name;
@@ -83,14 +82,13 @@ function displayTemperature(response) {
 	dateEl.innerHTML = formatDate(response.data.dt * 1000);
 	iconEl.src = `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
 	iconEl.alt = response.data.weather[0].description;
-	celcTemp = Math.round(response.data.main.temp);
 
 	getForecast(response.data.coord);
 }
 
-function search(city) {
+function search(city, units) {
 	let apiKey = 'b28509bf2e3b7243f21402b7bfc8dac4';
-	let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+	let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 	axios.get(apiUrl).then(displayTemperature);
 }
 
@@ -109,7 +107,7 @@ function searchLocation() {
 function handleSubmit(event) {
 	event.preventDefault();
 	let cityInputEl = document.querySelector('#city-input').value;
-	search(cityInputEl);
+	search(cityInputEl, 'metric');
 }
 
 let form = document.querySelector('#search-form');
@@ -121,18 +119,26 @@ geolocation.addEventListener('click', searchLocation);
 
 //change temperature to farenheit
 farenhEl.addEventListener('click', function (event) {
-	event.preventDefault();
-	tempEl.innerHTML = Math.round(celcTemp * 1.8 + 32);
-	farenhEl.classList.add('active');
 	celcEL.classList.remove('active');
+	farenhEl.classList.add('active');
+	let cityInputEl = document.querySelector('#city-input').value;
+	if (cityInputEl) {
+		search(cityInputEl, 'imperial');
+	} else {
+		search('London', 'imperial');
+	}
 });
 
 //change temperature to celcius
 celcEL.addEventListener('click', function (event) {
-	event.preventDefault();
-	tempEl.innerHTML = celcTemp;
 	celcEL.classList.add('active');
 	farenhEl.classList.remove('active');
+	let cityInputEl = document.querySelector('#city-input').value;
+	if (cityInputEl) {
+		search(cityInputEl, 'metric');
+	} else {
+		search('London', 'metric');
+	}
 });
 
-search('London');
+search('London', 'metric');
