@@ -96,8 +96,9 @@ function searchLocation() {
 	navigator.geolocation.getCurrentPosition(function (position) {
 		let lat = position.coords.latitude;
 		let lon = position.coords.longitude;
+		let units = celcEL.classList.contains('active') ? 'metric' : 'imperial';
 		let apiKey = 'b28509bf2e3b7243f21402b7bfc8dac4';
-		let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+		let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
 
 		axios.get(apiUrl).then(displayTemperature);
 	});
@@ -107,7 +108,8 @@ function searchLocation() {
 function handleSubmit(event) {
 	event.preventDefault();
 	let cityInputEl = document.querySelector('#city-input').value;
-	search(cityInputEl, 'metric');
+	let units = celcEL.classList.contains('active') ? 'metric' : 'imperial';
+	search(cityInputEl, units);
 }
 
 let form = document.querySelector('#search-form');
@@ -125,7 +127,8 @@ farenhEl.addEventListener('click', function (event) {
 	if (cityInputEl) {
 		search(cityInputEl, 'imperial');
 	} else {
-		search('London', 'imperial');
+		let city = cityEl.innerHTML;
+		search(city, 'imperial');
 	}
 });
 
@@ -137,7 +140,8 @@ celcEL.addEventListener('click', function (event) {
 	if (cityInputEl) {
 		search(cityInputEl, 'metric');
 	} else {
-		search('London', 'metric');
+		let city = cityEl.innerHTML;
+		search(city, 'metric');
 	}
 });
 
